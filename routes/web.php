@@ -1,5 +1,7 @@
 <?php
 
+use App\Data;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -12,5 +14,9 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    $usage = Data::latest()->take(1)->get()->first()->value;
+    $status_options = ['primary','info', 'warning', 'danger'];
+    // To do: Color of status
+    // $status = $status_options[]
+    return view('home')->with(compact('usage'));
 });
