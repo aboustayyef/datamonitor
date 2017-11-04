@@ -13,8 +13,8 @@
             <div class="container">
                 <h1 class="is-title is-size-1">Usage This Month</h1>
                 <hr>
-                <h2 class="is-subtitle is-size-6">{{$usage}} / 200 GB</h2>
-                <progress value="{{$usage}}" max="200" class="progress is-info">
+                <h2 class="is-subtitle is-size-6">{{$usage['data_used']}} / 200 GB</h2>
+                <progress value="{{$usage['data_used']}}" max="200" class="progress is-{{$usage['status']}}">
             </div>
         </div>
     </body>

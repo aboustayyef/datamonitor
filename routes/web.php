@@ -14,9 +14,6 @@ use App\Data;
 */
 
 Route::get('/', function () {
-    $usage = Data::latest()->take(1)->get()->first()->value;
-    $status_options = ['primary','info', 'warning', 'danger'];
-    // To do: Color of status
-    // $status = $status_options[]
+    $usage = Data::gather(165.22);
     return view('home')->with(compact('usage'));
 });
