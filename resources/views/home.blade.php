@@ -43,6 +43,8 @@
           @include('tabs')
             <canvas id="myChart" width="400" height="400"></canvas>
             <script>
+              var unit = '{{request()->get('timeframe')}}' == 'today' ? 'hour' : 'day';
+              console.log('unit is: ' + unit);
               var ctx = document.getElementById("myChart");
               ctx.height = 200;
               var myChart = new Chart(ctx, {
@@ -64,6 +66,7 @@
                           xAxes: [{
                             type: 'time',
                             time: {
+                              unit: unit,
                               tooltipFormat: 'MMM D, hA'
                             }
                           }]

@@ -70,13 +70,13 @@ class Data extends Model
 		$info  = [];
 		switch ($timeframe) {
 			case 'month':
-				$data = Static::where( DB::raw('MONTH(created_at)'), '=', date('n') )->get();
+				$data = Static::where('created_at', '>', (new Carbon)->startOfMonth())->get();
 				break;
 			case 'today':
-				$data = Static::where('created_at', '>', (new Carbon)->subDay())->get();
+				$data = Static::where('created_at', '>', (new Carbon)->startOfDay())->get();
 				break;
 			case 'week':
-				$data = Static::where('created_at', '>', (new Carbon)->subDays(7))->get();
+				$data = Static::where('created_at', '>', (new Carbon)->startOfWeek())->get();
 				break;
 			default:
 				$data = Static::where( DB::raw('MONTH(created_at)'), '=', date('n') )->get();
