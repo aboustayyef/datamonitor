@@ -14,6 +14,6 @@ use App\Data;
 */
 
 Route::get('/', function () {
-    $usage = Data::gather(165.22);
+    $usage = Data::gather();
     return view('home')->with(compact('usage'));
 });

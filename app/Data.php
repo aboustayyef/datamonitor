@@ -66,17 +66,31 @@ class Data extends Model
 		return $result;
 	}
 
-	public static function hourlyDataSet(){
-		$data  = [];
-		$data_this_month = Static::where( DB::raw('MONTH(created_at)'), '=', date('n') )->get();
-		$data['values'] = $data_this_month->map(function($data_item){
+	public static function hourlyDataSet($timeframe = 'month'){
+		$info  = [];
+		switch ($timeframe) {
+			case 'month':
+				$data = Static::where( DB::raw('MONTH(created_at)'), '=', date('n') )->get();
+				break;
+			case 'today':
+				$data = Static::where('created_at', '>', (new Carbon)->subDay())->get();
+				break;
+			case 'week':
+				$data = Static::where('created_at', '>', (new Carbon)->subDays(7))->get();
+				break;
+			default:
+				$data = Static::where( DB::raw('MONTH(created_at)'), '=', date('n') )->get();
+				break;
+		}
+
+		$info['values'] = $data->map(function($data_item){
 			return $data_item->hourlyUse();
 		});
-		$data['labels'] = $data_this_month->map(function($data_item){
+		$info['labels'] = $data->map(function($data_item){
 			return $data_item->created_at->toW3cString();
 		}); 
 
-		return $data;
+		return $info;
 	}
 
 }

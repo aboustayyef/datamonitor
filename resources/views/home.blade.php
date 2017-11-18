@@ -38,7 +38,9 @@
             </div>
         </div>
         <div class="section">
+
           <div class="container">
+          @include('tabs')
             <canvas id="myChart" width="400" height="400"></canvas>
             <script>
               var ctx = document.getElementById("myChart");
@@ -46,10 +48,10 @@
               var myChart = new Chart(ctx, {
                   type: 'line',
                   data: {
-                      labels: {!!App\Data::hourlyDataSet()['labels']->toJson()!!},
+                      labels: {!!App\Data::hourlyDataSet(request()->get('timeframe'))['labels']->toJson()!!},
                       datasets: [{
                           label: 'Hourly Usage',
-                          data: {{App\Data::hourlyDataSet()['values']->toJson()}},
+                          data: {{App\Data::hourlyDataSet(request()->get('timeframe'))['values']->toJson()}},
                       }]
                   },
                   options: {
@@ -62,7 +64,6 @@
                           xAxes: [{
                             type: 'time',
                             time: {
-                              unit: 'day',
                               tooltipFormat: 'MMM D, hA'
                             }
                           }]
