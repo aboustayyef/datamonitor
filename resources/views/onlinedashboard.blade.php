@@ -19,8 +19,8 @@
         <div id="app">
           <div class="section" v-cloak>
               <div class="container">
+                <span v-if="status == 'loading' "><a class="button is-large is-white is-loading"></a></span>
                   <h1 class="is-title is-size-1">Usage This Month</h1>
-                  <h2 class="is-subtitle is-size-6">Updated: @{{values.last_updated}} </h2>
                   <hr>
                   <h2 class="is-subtitle is-size-6"><strong>Data: @{{values.data_used}} </strong> / 200 GB</h2>
                   <progress :value="values.data_used" max="200" class="progress"></progress>
@@ -41,6 +41,7 @@
                       </div>
                     </div>
                   </nav>
+                  <h2 class="is-subtitle is-size-6">Updated: @{{values.last_updated}} </h2>
               </div>
           </div>
         </div>

@@ -18,11 +18,13 @@ window.Vue = require('vue');
 const app = new Vue({
     el: '#app',
     data: {
+        'status': 'loading',
         'values': {}
     },
     mounted: function(){
         axios.get('https://internet-balance-at-home.firebaseio.com/usage.json').then(data => {
             this.values = data.data;
+            this.status = 'loaded';
         });
     }
 });
