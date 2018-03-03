@@ -20,10 +20,14 @@
           <div class="section" v-cloak>
               <div class="container">
                 <span v-if="status == 'loading' "><a class="button is-large is-white is-loading"></a></span>
-                  <h1 class="is-title is-size-1">Usage This Month</h1>
+                  <h1 class="is-title is-size-1" style="font-weight:bold; line-height: 1">Usage This Month</h1>
                   <hr>
-                  <h2 class="is-subtitle is-size-6"><strong>Data: @{{values.data_used}} </strong> / 200 GB</h2>
+                  <h2 class="is-subtitle is-size-6"><strong>Cumulative Recommended: @{{values.data_used}} </strong> / @{{daily_target}} GB</h2>
+                  <progress :value="values.data_used" :max="daily_target" class="progress"></progress>
+                  <hr>
+                  <h2 class="is-subtitle is-size-6"><strong>Used this month: @{{values.data_used}} </strong> / 200 GB</h2>
                   <progress :value="values.data_used" max="200" class="progress"></progress>
+
                   <h2 class="is-subtitle is-size-6"><strong>Days in month: </strong> @{{values.days_passed}}/@{{values.days_in_months}} </h2>
                   <progress :value="values.days_passed" :max="values.days_in_months" class="progress"></progress>
 

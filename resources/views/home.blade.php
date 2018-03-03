@@ -16,6 +16,9 @@
                 <h1 class="is-title is-size-1">Usage This Month</h1>
                 <h2 class="is-subtitle is-size-6">Updated {{$usage['last_updated'] }}</h2>
                 <hr>
+                <h2 class="is-subtitle is-size-6"><strong>Cumulative Recommended: {{$usage['data_used']}} </strong> / {{$usage['today'] * $usage['recommended_daily']}} GB</h2>
+                <progress value="{{$usage['data_used']}}" max="{{$usage['today'] * $usage['recommended_daily']}}" class="progress"></progress>
+                <hr>
                 <h2 class="is-subtitle is-size-6"><strong>Data: </strong>{{$usage['data_used']}} / 200 GB</h2>
                 <progress value="{{$usage['data_used']}}" max="200" class="progress is-{{$usage['data_status']}}"></progress>
                 <h2 class="is-subtitle is-size-6"><strong>Days in month: </strong>{{$usage['today']}} / {{$usage['days_in_month']}}</h2>

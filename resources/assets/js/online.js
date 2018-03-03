@@ -21,6 +21,14 @@ const app = new Vue({
         'status': 'loading',
         'values': {}
     },
+    computed: {
+        'daily_target': function(){
+            if (this.status == 'loaded') {
+                return this.values.recommended_daily * this.values.days_passed;
+            }
+            return 0;
+        }
+    },
     mounted: function(){
         axios.get('https://internet-balance-at-home.firebaseio.com/usage.json').then(data => {
             this.values = data.data;
