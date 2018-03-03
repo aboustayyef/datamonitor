@@ -24,7 +24,7 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-        $schedule->command('data:monitor')->hourly();
+        $schedule->command('data:monitor')->everyFiveMinutes();
     }
 
     /**

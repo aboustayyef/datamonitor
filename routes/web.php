@@ -24,3 +24,8 @@ Route::get('/', function(){
     return view('onlinedashboard');
 });
 
+// force online view regardless of env
+Route::get('/online', function(){
+    return view('onlinedashboard');
+});
+

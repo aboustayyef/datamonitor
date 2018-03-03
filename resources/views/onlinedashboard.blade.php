@@ -10,8 +10,14 @@
     </head>
 
     <body>
+        
+        <style>
+          [v-cloak] > * { display:none }
+          [v-cloak]::before { content: "loading…" }
+        </style>
+
         <div id="app">
-          <div class="section">
+          <div class="section" v-cloak>
               <div class="container">
                   <h1 class="is-title is-size-1">Usage This Month</h1>
                   <h2 class="is-subtitle is-size-6">Updated: @{{values.last_updated}} </h2>
