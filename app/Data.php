@@ -25,6 +25,7 @@ class Data extends Model
 		// Data used
 		$usage['data_used'] = $used;
 		$usage['last_updated'] = $last_record->created_at->diffForHumans();
+		$usage['last_updated_absolute'] = $last_record->created_at;
 		$usage['data_remaining'] = 200 - $used;
 		$usage['data_status'] = Static::getStatusFromRatio($usage['data_used'] / 200);
 

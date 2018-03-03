@@ -48,7 +48,7 @@
               var ctx = document.getElementById("myChart");
               ctx.height = 200;
               var myChart = new Chart(ctx, {
-                  type: 'line',
+                  type: 'bar',
                   data: {
                       labels: {!!App\Data::hourlyDataSet(request()->get('timeframe'))['labels']->toJson()!!},
                       datasets: [{

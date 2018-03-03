@@ -13,6 +13,10 @@ use App\Data;
 |
 */
 
+Route::get('/online', function(){
+    return view('onlinedashboard');
+});
+
 Route::get('/', function () {
     $usage = Data::gather();
     return view('home')->with(compact('usage'));
