@@ -13,11 +13,14 @@ use App\Data;
 |
 */
 
-Route::get('/online', function(){
+Route::get('/', function(){
+    // if local, return local db info 
+    if (env('APP_ENV') == 'local') {
+        $usage = Data::gather();
+        return view('home')->with(compact('usage'));
+    }
+
+    // else, if online, return firbase stuff
     return view('onlinedashboard');
 });
 
-Route::get('/', function () {
-    $usage = Data::gather();
-    return view('home')->with(compact('usage'));
-});
