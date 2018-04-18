@@ -44,6 +44,12 @@
                         <p class="title">@{{values.actual_daily}} GB</p>
                       </div>
                     </div>
+                    <div class="level-item has-text-centered">
+                      <div v-if="values.data_used">
+                        <p class="heading"><span v-if="values.data_used >= daily_target">Deficit</span><span v-else>Surplus</span></p>
+                        <p class="title">@{{Number.parseFloat(values.data_used - daily_target).toPrecision(3)}} GB</p>
+                      </div>
+                    </div>
                   </nav>
                   <h2 class="is-subtitle is-size-6">Updated: @{{values.last_updated}} </h2>
               </div>
