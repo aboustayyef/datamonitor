@@ -46,8 +46,14 @@
                     </div>
                     <div class="level-item has-text-centered">
                       <div v-if="values.data_used">
-                        <p class="heading"><span v-if="values.data_used >= daily_target">Deficit</span><span v-else>Surplus</span></p>
-                        <p class="title">@{{Number.parseFloat(values.data_used - daily_target).toPrecision(3)}} GB</p>
+                        <p class="heading"><span v-if="values.data_used >= daily_target" class="tag is-warning">Deficit</span><span v-else class="tag is-info">Surplus</span></p>
+                        <p class="title">@{{Math.abs(Number.parseFloat(values.data_used - daily_target).toPrecision(3))}} GB</p>
+                      </div>
+                    </div>
+                    <div class="level-item has-text-centered">
+                      <div v-if="values.data_used">
+                        <p class="heading">Days left at this rate</p>
+                        <p class="title">@{{Number.parseFloat((200 - values.data_used)/values.actual_daily).toPrecision(3)}} days</p>
                       </div>
                     </div>
                   </nav>
