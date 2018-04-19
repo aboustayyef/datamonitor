@@ -22,8 +22,13 @@
                 <span v-if="status == 'loading' "><a class="button is-large is-white is-loading"></a></span>
                   <h1 class="is-title is-size-1" style="font-weight:bold; line-height: 1">Usage This Month</h1>
                   <hr>
-                  <h2 class="is-subtitle is-size-6"><strong>Cumulative Recommended: @{{values.data_used}} </strong> / @{{daily_target}} GB</h2>
-                  <progress :value="values.data_used" :max="daily_target" class="progress"></progress>
+                  <h2 class="is-subtitle is-size-6">
+                    <strong>Cumulative Recommended: @{{values.data_used}}</strong>&nbsp;/&nbsp;@{{daily_target}}&nbsp;GB 
+                    <span v-if="values.data_used" :class="deficit_or_surplus_class">
+                      (@{{deficit_or_surplus_amount}} GB @{{deficit_or_surplus_status}})
+                    </span>
+                  </h2>
+                  <progress style="margin-top:1em" :value="values.data_used" :max="daily_target" class="progress"></progress>
                   <hr>
                   <h2 class="is-subtitle is-size-6"><strong>Used this month: @{{values.data_used}} </strong> / 200 GB</h2>
                   <progress :value="values.data_used" max="200" class="progress"></progress>
@@ -42,12 +47,6 @@
                       <div>
                         <p class="heading">Actual Daily</p>
                         <p class="title">@{{values.actual_daily}} GB</p>
-                      </div>
-                    </div>
-                    <div class="level-item has-text-centered">
-                      <div v-if="values.data_used">
-                        <p class="heading"><span v-if="values.data_used >= daily_target" class="tag is-warning">Deficit</span><span v-else class="tag is-info">Surplus</span></p>
-                        <p class="title">@{{Math.abs(Number.parseFloat(values.data_used - daily_target).toPrecision(3))}} GB</p>
                       </div>
                     </div>
                     <div class="level-item has-text-centered">

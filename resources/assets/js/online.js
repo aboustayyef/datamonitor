@@ -22,11 +22,27 @@ const app = new Vue({
         'values': {}
     },
     computed: {
-        'daily_target': function(){
+        daily_target(){
             if (this.status == 'loaded') {
                 return this.values.recommended_daily * this.values.days_passed;
             }
             return 0;
+        },
+        deficit_or_surplus_status(){
+            if (this.values.data_used >= this.daily_target) {
+                return 'deficit'
+            } else {
+                return 'surplus';
+            }
+        },
+        deficit_or_surplus_amount(){
+            return Math.abs(Number.parseFloat(this.values.data_used - this.daily_target).toPrecision(3));
+        },
+        deficit_or_surplus_class(){
+            if (this.deficit_or_surplus_status == 'deficit') {
+                return 'tag is-warning';
+            }
+            return 'tag is-info';
         }
     },
     mounted: function(){
