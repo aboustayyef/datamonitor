@@ -23,9 +23,9 @@
                   <h1 class="is-title is-size-1" style="font-weight:bold; line-height: 1">Usage This Month</h1>
                   <hr>
                   <h2 class="is-subtitle is-size-6">
-                    <strong>Cumulative Recommended: @{{values.data_used}}</strong>&nbsp;/&nbsp;@{{daily_target}}&nbsp;GB 
+                    <strong>Cumulative Recommended: @{{values.data_used}}</strong>&nbsp;/&nbsp;@{{daily_target | decimalPrecision(5)}}&nbsp;GB 
                     <span v-if="values.data_used" :class="deficit_or_surplus_class">
-                      (@{{deficit_or_surplus_amount}} GB @{{deficit_or_surplus_status}})
+                      (@{{deficit_or_surplus_amount | decimalPrecision(4)}} GB @{{deficit_or_surplus_status}})
                     </span>
                   </h2>
                   <progress style="margin-top:1em" :value="values.data_used" :max="daily_target" class="progress"></progress>

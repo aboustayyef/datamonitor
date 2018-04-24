@@ -21,6 +21,11 @@ const app = new Vue({
         'status': 'loading',
         'values': {}
     },
+    filters: {
+        decimalPrecision: function(value, p){
+            return Number.parseFloat(value).toPrecision(p);
+        }
+    },
     computed: {
         daily_target(){
             if (this.status == 'loaded') {
@@ -36,7 +41,7 @@ const app = new Vue({
             }
         },
         deficit_or_surplus_amount(){
-            return Math.abs(Number.parseFloat(this.values.data_used - this.daily_target).toPrecision(3));
+            return Math.abs((this.values.data_used - this.daily_target));
         },
         deficit_or_surplus_class(){
             if (this.deficit_or_surplus_status == 'deficit') {
