@@ -23,7 +23,7 @@ const app = new Vue({
     },
     filters: {
         decimalPrecision: function(value, p){
-            return Number.parseFloat(value).toPrecision(p);
+            return value.toFixed(p);
         }
     },
     computed: {

@@ -23,9 +23,9 @@
                   <h1 class="is-title is-size-1" style="font-weight:bold; line-height: 1">Usage This Month</h1>
                   <hr>
                   <h2 class="is-subtitle is-size-6">
-                    <strong>Cumulative Recommended: @{{values.data_used}}</strong>&nbsp;/&nbsp;@{{daily_target | decimalPrecision(5)}}&nbsp;GB 
+                    <strong>Cumulative Recommended: @{{values.data_used}}</strong>&nbsp;/&nbsp;@{{daily_target | decimalPrecision(2)}}&nbsp;GB 
                     <span v-if="values.data_used" :class="deficit_or_surplus_class">
-                      (@{{deficit_or_surplus_amount | decimalPrecision(4)}} GB @{{deficit_or_surplus_status}})
+                      (@{{deficit_or_surplus_amount | decimalPrecision(2)}} GB @{{deficit_or_surplus_status}})
                     </span>
                   </h2>
                   <progress style="margin-top:1em" :value="values.data_used" :max="daily_target" class="progress"></progress>
@@ -40,19 +40,19 @@
                     <div class="level-item has-text-centered">
                       <div>
                         <p class="heading">Recommended Daily</p>
-                        <p class="title">@{{values.recommended_daily}} GB</p>
+                        <p class="title">@{{values.recommended_daily | decimalPrecision(2)}} GB</p>
                       </div>
                     </div>
                     <div class="level-item has-text-centered">
                       <div>
                         <p class="heading">Actual Daily</p>
-                        <p class="title">@{{values.actual_daily}} GB</p>
+                        <p class="title">@{{values.actual_daily | decimalPrecision(2)}} GB</p>
                       </div>
                     </div>
                     <div class="level-item has-text-centered">
                       <div v-if="values.data_used">
                         <p class="heading">Days left at this rate</p>
-                        <p class="title">@{{Number.parseFloat((200 - values.data_used)/values.actual_daily).toPrecision(3)}} days</p>
+                        <p class="title">@{{((200 - values.data_used)/values.actual_daily) | decimalPrecision(2) }} days</p>
                       </div>
                     </div>
                   </nav>
