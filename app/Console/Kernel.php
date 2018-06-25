@@ -13,7 +13,8 @@ class Kernel extends ConsoleKernel
      * @var array
      */
     protected $commands = [
-        Commands\DuskTester::class
+        Commands\DuskTester::class,
+        Commands\SurplusOrDeficitChecker::class
     ];
 
     /**
