@@ -45,9 +45,9 @@ class SurplusOrDeficitChecker extends Command
         $recommended_so_far = $d['recommended_daily'] * $d['today'];
         $difference = $recommended_so_far - $used_so_far ;
         if ($difference >= 0) {
-            echo 'Surplus ';
+            echo ':arrow_up: ';
         } else {
-            echo 'Deficit ';
+            echo ':arrow_down: ';
         };
         echo abs($difference) . ' GB';
         if ($difference >= 0) {
