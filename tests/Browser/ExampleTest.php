@@ -4,6 +4,7 @@ namespace Tests\Browser;
 
 use App\Data;
 use GuzzleHttp\Client;
+use Cache;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Laravel\Dusk\Browser;
 use Tests\DuskTestCase;
@@ -31,8 +32,12 @@ class ExampleTest extends DuskTestCase
             $v->value = (float) $value;
             $v->save();
 
-            // Update Firebase
             $usage = Data::gather();
+
+            // Udate Cache
+            Cache::forever('lastCheckedData', $usage, 120);
+
+            // Update Firebase
             $usageJson = collect([
                 'last_updated'  =>  $usage['last_updated_absolute']->format('d/m/y H:i'),
                 'data_used' =>  $usage['data_used'], // how many gbs have already been used (out of 200)

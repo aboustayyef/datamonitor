@@ -2,8 +2,9 @@
 
 namespace App\Console\Commands;
 
-use Illuminate\Console\Command;
 use App\Data;
+use Cache;
+use Illuminate\Console\Command;
 
 class SurplusOrDeficitChecker extends Command
 {
@@ -38,8 +39,7 @@ class SurplusOrDeficitChecker extends Command
      */
     public function handle()
     {
-        $d = Data::gather();
-        #return var_dump($d);
+        $d = Cache::get('lastCheckedData');
         $used_so_far = $d['data_used'];
         // return $used_so_far;
         $recommended_so_far = $d['recommended_daily'] * $d['today'];
@@ -50,15 +50,21 @@ class SurplusOrDeficitChecker extends Command
             echo ':arrow_down: ';
         };
         echo abs($difference) . ' GB';
+        
+        // if data is older than 1 hour, show warning emoji
+        if ($d['last_updated_absolute']->diffInMinutes() > 60) {
+            echo ' :warning: ';
+        }
+
         if ($difference >= 0) {
             echo ' | color=green';
         } else {
             echo ' | color=red ';
         };
-
+        
         echo PHP_EOL;
         echo '---';
         echo PHP_EOL;
-        echo 'last checked: ' . $d['last_updated'];
+        echo 'last checked: ' . $d['last_updated'] . ' | bash=open\ /Users/mustaphahamoui/Desktop/Check\ Data\ Usage.app/Contents/document.wflow';
     }
 }
