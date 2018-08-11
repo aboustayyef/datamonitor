@@ -18,7 +18,7 @@
 
         <div id="app">
           <div class="section" v-cloak>
-              <span v-if="status == 'loading' "><a class="button is-large is-white is-loading"></a></span>
+              <div class="container" v-if="status == 'loading' "><a class="button is-large is-white is-loading"></a></div>
               <div class="container" v-if="status == 'loaded'">
                   <h1 class="title is-size-1" style="font-weight:bold; line-height: 1">Usage This Month</h1>
                   <hr>
