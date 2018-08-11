@@ -14,18 +14,5 @@ use App\Data;
 */
 
 Route::get('/', function(){
-    // if local, return local db info 
-    if (env('APP_ENV') == 'local') {
-        $usage = Data::gather();
-        return view('home')->with(compact('usage'));
-    }
-
-    // else, if online, return firbase stuff
-    return view('onlinedashboard');
+    return view('dashboard');
 });
-
-// force online view regardless of env
-Route::get('/online', function(){
-    return view('onlinedashboard');
-});
-

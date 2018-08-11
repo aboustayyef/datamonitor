@@ -18,9 +18,9 @@
 
         <div id="app">
           <div class="section" v-cloak>
-              <div class="container">
-                <span v-if="status == 'loading' "><a class="button is-large is-white is-loading"></a></span>
-                  <h1 class="is-title is-size-1" style="font-weight:bold; line-height: 1">Usage This Month</h1>
+              <span v-if="status == 'loading' "><a class="button is-large is-white is-loading"></a></span>
+              <div class="container" v-if="status == 'loaded'">
+                  <h1 class="title is-size-1" style="font-weight:bold; line-height: 1">Usage This Month</h1>
                   <hr>
                   <h2 class="is-subtitle is-size-6">
                     <strong>Cumulative Recommended: @{{values.data_used}}</strong>&nbsp;/&nbsp;@{{daily_target | decimalPrecision(2)}}&nbsp;GB 

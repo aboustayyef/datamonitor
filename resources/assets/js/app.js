@@ -6,7 +6,6 @@
  */
 
 require('./bootstrap');
-import Chart from 'chart.js';
 window.Vue = require('vue');
 
 
